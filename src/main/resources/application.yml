@@ -4,10 +4,10 @@ spring:
       enabled: always
   profiles:
     active: local
-  batch:
-    job:
-      names: ${job.name:NONE}
 
+logging:
+  level:
+    org.springframework.batch: debug
 
 ---
 spring:

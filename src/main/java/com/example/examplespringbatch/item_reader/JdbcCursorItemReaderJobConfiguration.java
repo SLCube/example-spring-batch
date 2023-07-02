@@ -21,9 +21,9 @@ import javax.sql.DataSource;
 @Configuration
 public class JdbcCursorItemReaderJobConfiguration {
 
-    private JobBuilderFactory jobBuilderFactory;
-    private StepBuilderFactory stepBuilderFactory;
-    private DataSource dataSource;
+    private final JobBuilderFactory jobBuilderFactory;
+    private final StepBuilderFactory stepBuilderFactory;
+    private final DataSource dataSource;
 
     private static final int chunkSize = 10;
 
@@ -49,7 +49,7 @@ public class JdbcCursorItemReaderJobConfiguration {
                 .fetchSize(chunkSize)
                 .dataSource(dataSource)
                 .rowMapper(new BeanPropertyRowMapper<>(Pay.class))
-                .sql("SELECT id, amount, tx_name, tx_date_time, FROM pay")
+                .sql("SELECT id, amount, tx_name, tx_date_time FROM pay")
                 .name("jdbcCursorItemReader")
                 .build();
     }
